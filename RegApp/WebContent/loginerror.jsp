@@ -5,6 +5,7 @@
 <tr>
 <td>
 <%-- <jsp:include page="loginerror.jsp"/> --%>
+<form action="login" method="post"></form>
 <%@include file="login.jsp"%>
 </td>
 </tr>
@@ -18,4 +19,4 @@
 			<input name="captcha" type="text"></td>
 </tr>
 
-</table>
+</form>
