@@ -3,6 +3,7 @@ package com.reg.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 			else{
 				System.out.println("number of attempts left "+(--counter));
 				if(counter < 1){
-					request.setAttribute("captcha", 12345);
+					request.setAttribute("captcha", LoginServlet.generateCaptcha());
 					RequestDispatcher rd = request.getRequestDispatcher("loginerror.jsp");
 					rd.forward(request, response);
 				}
@@ -66,9 +67,28 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	private void generateCaptcha() {
+	private static String generateCaptcha() {
 		
-		// captch generation logic
+		Random random = new Random();
+		int length = 5 ;
+
+		StringBuffer buffer = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			int baseCharNumber = Math.abs(random.nextInt()) % 62;
+			int charNumber = 0;
+			if (baseCharNumber < 26) {
+				charNumber = 65 + baseCharNumber;
+			}
+			else if (baseCharNumber < 52){
+				charNumber = 97 + (baseCharNumber - 26);
+			}
+			else {
+				charNumber = 48 + (baseCharNumber - 52);
+			}
+			buffer.append((char)charNumber);
+		}
+
+		return buffer.toString();
 	}
 
 	

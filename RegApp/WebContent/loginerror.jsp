@@ -9,13 +9,13 @@
 </td>
 </tr>
 <tr>
-
-<td><%= request.getAttribute("captcha") %></td>
+<td><label for="">Captcha</label>
+<%= request.getAttribute("captcha") %></td>
 
 </tr>
 <tr>
-			<td><label for="">Enter Captcha</label></td>
-			<td><input name="captcha" type="text"></td>
+			<td><label for="">Enter Captcha</label>
+			<input name="captcha" type="text"></td>
 </tr>
 
 </table>
